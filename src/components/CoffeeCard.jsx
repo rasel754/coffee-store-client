@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 const CoffeeCard = ({ coffee , coffees , setCoffees}) => {
   const { _id, name, quantity, supplier, taste, category, details, photo } =
     coffee;
+
+    
   const handleDelete = (_id) => {
     console.log(_id);
     Swal.fire({

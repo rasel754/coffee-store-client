@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect } from 'react';
 import Swal from 'sweetalert2'
 
 const AddCoffee = () => {
@@ -24,28 +26,57 @@ const AddCoffee = () => {
       photo,
     };
     console.log(newCoffee);
-
-    fetch("http://localhost:5000/coffee", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newCoffee),
-    })
-     .then((res) => res.json())
+    // using axios 
+    axios.post('http://localhost:5000/coffee',newCoffee)
      .then((data) => {
-        console.log(data);
-        if(data.insertedId){
-            Swal.fire({
-                title: 'success...',
-                text: 'item added successfully',
-                icon: 'success',
-                confirmButtonText: 'Cool'
+      if(data.data.insertedId){
+        alert('data inserted successfully')
+      }
+     })
 
-              })
-              form.reset();
-        }
-      })
+
+
+
+
+// using fetch 
+    // fetch("http://localhost:5000/coffee", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(newCoffee),
+    // })
+    //  .then((res) => res.json())
+    //  .then((data) => {
+    //     console.log(data);
+    //     if(data.insertedId){
+    //         Swal.fire({
+    //             title: 'success...',
+    //             text: 'item added successfully',
+    //             icon: 'success',
+    //             confirmButtonText: 'Cool'
+
+    //           })
+    //           form.reset();
+    //     }
+    //   })
+      // useEffect(()=> {
+      // fetch("/")  
+      // then(response => response.json())
+      // then(data => {
+      //  console.log(data);
+      // })
+      // },[])
+
+
+    //    useEffect(()=> {
+    //  axios.get('/')
+    //  .then (data => {
+    //   console.log(data.data);
+    //  });
+    //   },[])
+
+
   };
 
   return (
